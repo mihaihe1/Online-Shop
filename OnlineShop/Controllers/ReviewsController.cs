@@ -9,8 +9,7 @@ namespace OnlineShop.Controllers
 {
     public class ReviewsController : Controller
     {
-        private ProductDBContext db = new ProductDBContext();
-
+       
         public ActionResult Index()
         {
             return View();

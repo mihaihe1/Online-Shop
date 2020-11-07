@@ -18,14 +18,10 @@ namespace OnlineShop.Models
         [Required]
         public float Price { get; set; }
         public float Rating { get; set; }
+        public int CategoryId { get; set; }
 
+        public virtual Category Category { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
     }
 
-    public class ProductDBContext : DbContext
-    {
-        public ProductDBContext() : base("DBConnectionString") { }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Review> Revies { get; set; }
-    }
 }

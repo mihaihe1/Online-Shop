@@ -11,9 +11,12 @@ namespace OnlineShop.Models
     {
         [Key]
         public int ReviewId { get; set; }
+        [Required] // ???
         public string ReviewComment { get; set; }
+        [Required] // ???
         public int ReviewRating { get; set; } // int? rating = {0,1,2,3,4,5}
+        public int ProductId { get; set; }
 
-        public virtual Product Product;
+        public virtual Product Product { get; set; }
     }
 }

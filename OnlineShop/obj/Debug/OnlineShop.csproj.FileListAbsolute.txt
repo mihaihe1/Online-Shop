@@ -74,3 +74,9 @@ C:\Users\Mihai\Source\Repos\mihaihe1\Online-Shop\OnlineShop\obj\Debug\OnlineShop
 C:\Users\Mihai\Source\Repos\mihaihe1\Online-Shop\OnlineShop\obj\Debug\OnlineShop.csproj.CopyComplete
 C:\Users\Mihai\Source\Repos\mihaihe1\Online-Shop\OnlineShop\obj\Debug\OnlineShop.dll
 C:\Users\Mihai\Source\Repos\mihaihe1\Online-Shop\OnlineShop\obj\Debug\OnlineShop.pdb
+C:\Users\Mihai\Source\Repos\mihaihe1\Online-Shop\OnlineShop\bin\EntityFramework.dll
+C:\Users\Mihai\Source\Repos\mihaihe1\Online-Shop\OnlineShop\bin\EntityFramework.SqlServer.dll
+C:\Users\Mihai\Source\Repos\mihaihe1\Online-Shop\OnlineShop\bin\EntityFramework.xml
+C:\Users\Mihai\Source\Repos\mihaihe1\Online-Shop\OnlineShop\bin\EntityFramework.SqlServer.xml
+C:\Users\Mihai\Source\Repos\mihaihe1\Online-Shop\OnlineShop\obj\Debug\OnlineShop.Migrations.Initial.resources
+C:\Users\Mihai\Source\Repos\mihaihe1\Online-Shop\OnlineShop\obj\Debug\OnlineShop.csproj.GenerateResource.cache

@@ -9,7 +9,6 @@ namespace OnlineShop.Controllers
 {
     public class ProductsController : Controller
     {
-        private ProductDBContext db = new ProductDBContext();
 
         public ActionResult Index()
         {

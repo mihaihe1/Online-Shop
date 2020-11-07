@@ -14,7 +14,7 @@ namespace OnlineShop
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<ProductDBContext>(new DropCreateDatabaseIfModelChanges<ProductDBContext>());
+           // Database.SetInitializer<ProductDBContext>(new DropCreateDatabaseIfModelChanges<ProductDBContext>());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
