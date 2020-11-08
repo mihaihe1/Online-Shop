@@ -185,12 +185,17 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Categories\New.cshtml" />
+    <Content Include="Views\Categories\Show.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Products\New.cshtml" />
+    <Content Include="Views\Products\Show.cshtml" />
+    <Content Include="Views\Reviews\Index.cshtml" />
+    <Content Include="Views\Reviews\Show.cshtml" />
+    <Content Include="Views\Reviews\New.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Categories\" />
-    <Folder Include="Views\Products\" />
-    <Folder Include="Views\Reviews\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

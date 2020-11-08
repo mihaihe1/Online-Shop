@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h1>Adaugare Produs</h1>
+
+<form method="post" action="/Products/New">
+    <label>Nume Produs</label>
+    <input type="text" name="Title" />
+    <br />
+
+    <label>Descriere produs</label>
+    <textarea name="Description"></textarea>
+    <br />
+
+    <label>Pret produs</label>
+    <input type="number" step="0.01" name="Price" />  <!-- step bro <3 -->
+    <br />
+
+    <input type="hidden" name="Rating" value="0" />
+
+    <select name="CategoryId">
+        @foreach (var category in ViewBag.Categories)
+        {
+            <option value="@category.CategoryId">@category.CategoryName</option>
+        }
+    </select>
+    <br />
+
+    <button type="submit"> Adauga Produs </button>
+</form>
+
+<br /> <br />
+<a href="/Products/Index">Inapoi la produse</a>

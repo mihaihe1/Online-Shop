@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Afisare Categorii</h1>
+
+@foreach (var category in ViewBag.Categories)
+{
+    <h2>Nume Categorie: @category.CategoryName</h2>
+    <p>Descriere Categorie: @category.CategoryDescription</p>
+    <a href="/Categories/Show/@category.CategoryId">Afisare Categorie</a>
+    <br />
+}
+<br /> <br />
+<a href="/Categories/New">Adauga Categorie</a>
+<br /> <br />
+<a href="/Products/Index">Afisare lista produse</a>
+<br /> <br />
+<a href="/Reviews/Index">Afisare lista review-uri</a>

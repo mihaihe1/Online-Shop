@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h1>Adaugare Review</h1>
+
+<form method="post" action="/Reviews/New">
+    <label>Comentariu</label>
+    <textarea name="ReviewComment"></textarea>
+    <br />
+
+    <label>Rating</label>
+    <input type="number" name="ReviewRating" />
+    <br />
+
+    <select name="ProductId">
+        @foreach (var product in ViewBag.Products)
+        {
+            <option value="@product.Id">@product.Title</option>
+        }
+    </select>
+    <br />
+
+    <button type="submit"> Adauga Review </button>
+</form>
+
+<br /> <br />
+<a href="/Reviews/Index">Inapoi la review-uri</a>

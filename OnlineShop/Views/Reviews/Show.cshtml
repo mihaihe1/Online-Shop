@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Show";
+}
+
+<h1>Afisare Review</h1>
+<h2>Comentariu: @ViewBag.Review.ReviewComment</h2>
+<p>Rating: @ViewBag.Review.ReviewRating</p>
+<p>Pentru produsul: @ViewBag.Review.Product.Title</p>
+<a href="/Reviews/Edit/@ViewBag.Review.ReviewId">Modifica Review</a>
+<br />
+<form method="post" action="/Reviews/Delete/@ViewBag.Review.ReviewId">
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <button type="submit">Sterge review</button>
+</form>
+<br /> <br />
+<a href="/Reviews/New">Adauga review</a>
+<br /> <br />
+<a href="/Reviews/Index">Inapoi la review-uri</a>
