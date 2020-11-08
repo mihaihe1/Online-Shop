@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = "Review nou";
 }
 
 <h1>Adaugare Review</h1>
@@ -14,13 +14,7 @@
     <input type="number" name="ReviewRating" />
     <br />
 
-    <select name="ProductId">
-        @foreach (var product in ViewBag.Products)
-        {
-            <option value="@product.Id">@product.Title</option>
-        }
-    </select>
-    <br />
+    <input type="hidden" name="ProductId" value="@ViewBag.ProductId" />
 
     <button type="submit"> Adauga Review </button>
 </form>

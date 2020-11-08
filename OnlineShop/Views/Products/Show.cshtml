@@ -8,17 +8,17 @@
 <p>Descriere: @ViewBag.Product.Description</p>
 <p>Pret: @ViewBag.Product.Price</p>
 <p>Rating: @ViewBag.Product.Rating</p>
-
-@foreach (var review in ViewBag.Reviews)
+@foreach (var review in ViewBag.Product.Reviews)
 {
-    if (review.ReviewId == ViewBag.Product.Id)
-    {
     <br />
     <p>Comentariu: @review.ReviewComment</p>
     <p>Rating: @review.ReviewRating</p>
     <br />
-    }
+    
 }
+<a class="btn btn-info" href="/Reviews/New/@ViewBag.Product.Id">Adauga comentariu</a>
+
+<br />
 <a href="/Products/Edit/@ViewBag.Product.Id">Modifica produs</a>
 <form method="post" action="/Products/Delete/@ViewBag.Product.Id">
     @Html.HttpMethodOverride(HttpVerbs.Delete)
