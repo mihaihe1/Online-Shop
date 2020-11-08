@@ -37,6 +37,7 @@ namespace OnlineShop.Controllers
             Product product = db.Products.Find(id);
             ViewBag.Product = product;
             ViewBag.Category = product.Category;
+            ViewBag.Reviews = db.Reviews;
             return View();
         }
 

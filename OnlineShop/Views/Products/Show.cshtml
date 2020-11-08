@@ -3,11 +3,22 @@
     ViewBag.Title = "Show";
 }
 
-<h1>Afisare Articol</h1>
+<h1>Afisare Produs</h1>
 <h2>Nume: @ViewBag.Product.Title</h2>
 <p>Descriere: @ViewBag.Product.Description</p>
 <p>Pret: @ViewBag.Product.Price</p>
 <p>Rating: @ViewBag.Product.Rating</p>
+
+@foreach (var review in ViewBag.Reviews)
+{
+    if (review.ReviewId == ViewBag.Product.Id)
+    {
+    <br />
+    <p>Comentariu: @review.ReviewComment</p>
+    <p>Rating: @review.ReviewRating</p>
+    <br />
+    }
+}
 <a href="/Products/Edit/@ViewBag.Product.Id">Modifica produs</a>
 <form method="post" action="/Products/Delete/@ViewBag.Product.Id">
     @Html.HttpMethodOverride(HttpVerbs.Delete)
