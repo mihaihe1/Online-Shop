@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
@@ -17,12 +18,9 @@ namespace OnlineShop.Controllers
             ViewBag.Reviews = reviews;
             return View();
         }
-        public ActionResult New()
+        public ActionResult New(int id)
         {
-            var products = from prod in db.Products
-                           orderby prod.Title
-                           select prod;
-            ViewBag.products = products;
+            ViewBag.ProductId = id;
             return View();
         }
         [HttpPost]
@@ -39,5 +37,39 @@ namespace OnlineShop.Controllers
             ViewBag.Product = review.Product;
             return View();
         }
+        public ActionResult Edit(int id)
+        {
+            Review review = db.Reviews.Find(id);
+            ViewBag.Review = review;
+            return View();
+        }
+        [HttpPut]
+        public ActionResult Edit(int id, Review requestReview)
+        {
+            try
+            {
+                Review review = db.Reviews.Find(id);
+                if (TryUpdateModel(review))
+                {
+                    review.ReviewComment = requestReview.ReviewComment;
+                    review.ReviewRating = requestReview.ReviewRating;
+                    db.SaveChanges();
+                }
+                return Redirect("/Products/Show/" + review.ProductId);
+            }
+            catch(AmbiguousMatchException)
+            {
+                return View();
+            }
+        }
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            Review review = db.Reviews.Find(id);
+            db.Reviews.Remove(review);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
