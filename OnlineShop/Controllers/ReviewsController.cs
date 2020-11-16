@@ -14,61 +14,57 @@ namespace OnlineShop.Controllers
 
         public ActionResult Index()
         {
-            var reviews = db.Reviews.Include("Product");
-            ViewBag.Reviews = reviews;
-            return View();
-        }
-        public ActionResult New(int id)
-        {
-            ViewBag.ProductId = id;
             return View();
         }
         [HttpPost]
-        public ActionResult New(Review review)
-        {
-            db.Reviews.Add(review);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-        public ActionResult Show(int id)
-        {
-            Review review = db.Reviews.Find(id);
-            ViewBag.Review = review;
-            ViewBag.Product = review.Product;
-            return View();
-        }
-        public ActionResult Edit(int id)
-        {
-            Review review = db.Reviews.Find(id);
-            ViewBag.Review = review;
-            return View();
-        }
-        [HttpPut]
-        public ActionResult Edit(int id, Review requestReview)
+        public ActionResult New(Review rev)
         {
             try
             {
-                Review review = db.Reviews.Find(id);
-                if (TryUpdateModel(review))
+                db.Reviews.Add(rev);
+                db.SaveChanges();
+                return Redirect("/Products/Show/" + rev.ProductId);
+            }
+
+            catch (Exception e)
+            {
+                return Redirect("/Products/Show/" + rev.ProductId);
+            }
+
+        }
+        public ActionResult Edit(int id)
+        {
+            Review rev = db.Reviews.Find(id);
+            return View(rev);
+        }
+
+        [HttpPut]
+        public ActionResult Edit(int id, Review requestRev)
+        {
+            try
+            {
+                Review rev = db.Reviews.Find(id);
+                if (TryUpdateModel(rev))
                 {
-                    review.ReviewComment = requestReview.ReviewComment;
-                    review.ReviewRating = requestReview.ReviewRating;
+                    rev.ReviewComment = requestRev.ReviewComment;
+                    rev.ReviewRating = requestRev.ReviewRating;
                     db.SaveChanges();
                 }
-                return Redirect("/Products/Show/" + review.ProductId);
+                return Redirect("/Products/Show/" + rev.ProductId);
             }
-            catch(AmbiguousMatchException)
+            catch (Exception e)
             {
                 return View();
             }
+
         }
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            Review review = db.Reviews.Find(id);
-            db.Reviews.Remove(review);
+            Review rev = db.Reviews.Find(id);
+            db.Reviews.Remove(rev);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect("/Products/Show/" + rev.ProductId);
         }
 
     }

@@ -1,21 +1,19 @@
-﻿
+﻿@model OnlineShop.Models.Review
+
 @{
-    ViewBag.Title = "Editeaza review";
+    ViewBag.Title = "Edit";
 }
 
-<h2>@ViewBag.Title</h2>
-
-<form method="post" action="/Reviews/Edit/@ViewBag.Review.ReviewId">
+<h2>Editare comentariu</h2>
+<form method="post" action="/Reviews/Edit/@Model.ReviewId">
     @Html.HttpMethodOverride(HttpVerbs.Put)
-    <label>Comentariu</label>
+    @Html.Label("ReviewComment", "Comentariu")
     <br />
-    <textarea name="ReviewComment">@ViewBag.Review.ReviewComment</textarea>
+    @Html.Editor("ReviewComment")
     <br />
-    <label>Rating</label>
+    @Html.Label("ReviewRating", "Rating")
     <br />
-    <input type="number" name="ReviewRating" value="@ViewBag.Review.ReviewRating"/>
-    <br />
-    <button class="btn btn-success" type="submit">Editeaza review</button>
+    @Html.Editor("ReviewRating")
+    <button class="btn btn-success" type="submit">Editeaza comentariu</button>
 </form>
-
 

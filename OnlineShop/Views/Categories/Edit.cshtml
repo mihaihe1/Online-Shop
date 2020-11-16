@@ -1,21 +1,20 @@
-﻿
-@{
-    ViewBag.Title = "Editare categorie";
-}
+﻿@model OnlineShop.Models.Category
 
-<h2>@ViewBag.Title</h2>
+<h2>Editare categorie</h2>
 
-<form method="post" action="/Categories/Edit/@ViewBag.Category.CategoryId">
+<form method="post" action="/Categories/Edit/@Model.CategoryId">
     @Html.HttpMethodOverride(HttpVerbs.Put)
-    <label>Nume</label>
+    @Html.HiddenFor(m => m.CategoryId)
+    @Html.Label("CategoryName", "Denumire categorie")
     <br />
-    <input type="text" name="CategoryName" value="@ViewBag.Category.CategoryName" />
+    @Html.Editor("CategoryName")
     <br />
-    <label>Descriere</label>
+    @Html.Label("CategoryDescription", "Descriere categorie")
     <br />
-    <input type="text" name="CategoryDescription" value="@ViewBag.Category.CategoryDescription" />
-    <br />
+    @Html.Editor("CategoryDescription")
+    <br /><br />
 
     <button class="btn btn-success" type="submit">Modifica categoria</button>
 </form>
+
 

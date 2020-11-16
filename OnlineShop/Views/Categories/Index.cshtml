@@ -1,16 +1,14 @@
-﻿
+﻿@model OnlineShop.Models.Category
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h1>Afisare Categorii</h1>
 
-@foreach (var category in ViewBag.Categories)
+@foreach (OnlineShop.Models.Category category in ViewBag.Categories)
 {
-    <h2>Nume Categorie: @category.CategoryName</h2>
-    <p>Descriere Categorie: @category.CategoryDescription</p>
-    <a href="/Categories/Show/@category.CategoryId">Afisare Categorie</a>
-    <br />
+    @Html.Partial("CategoryInfo", category);
 }
 <br /> <br />
 <a href="/Categories/New">Adauga Categorie</a>

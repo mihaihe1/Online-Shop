@@ -1,26 +1,32 @@
-﻿
+﻿@model OnlineShop.Models.Product
 @{
     ViewBag.Title = "Show";
 }
 
 <h1>Afisare Produs</h1>
-<h2>Nume: @ViewBag.Product.Title</h2>
-<p>Descriere: @ViewBag.Product.Description</p>
-<p>Pret: @ViewBag.Product.Price</p>
-<p>Rating: @ViewBag.Product.Rating</p>
-@foreach (var review in ViewBag.Product.Reviews)
-{
-    <br />
-    <p>Comentariu: @review.ReviewComment</p>
-    <p>Rating: @review.ReviewRating</p>
-    <br />
-    
-}
-<a class="btn btn-info" href="/Reviews/New/@ViewBag.Product.Id">Adauga comentariu</a>
+<h2>Nume: @Model.Title</h2>
+<p>Descriere: @Model.Description</p>
+<p>Pret: @Model.Price</p>
+<p>Rating: @Model.Rating</p>
+
+<form method="post" action="/Reviews/New">
+    <div class="panel-body">
+        <input type="hidden" name="ProductId" value="@Model.Id" />
+        @Html.Label("ReviewComment", "Comentariu")
+        <br />
+        @Html.Editor("ReviewComment")
+        <br />
+        @Html.Label("ReviewRating", "Rating")
+        <br />
+        @Html.Editor("ReviewRating")
+        <br />
+        <button class="btn btn-success " type="submit">Adauga comentariu</button>
+    </div>
+</form>
 
 <br />
-<a href="/Products/Edit/@ViewBag.Product.Id">Modifica produs</a>
-<form method="post" action="/Products/Delete/@ViewBag.Product.Id">
+<a href="/Products/Edit/@Model.Id">Modifica produs</a>
+<form method="post" action="/Products/Delete/@Model.Id">
     @Html.HttpMethodOverride(HttpVerbs.Delete)
     <button type="submit">Sterge produs</button>
 </form>

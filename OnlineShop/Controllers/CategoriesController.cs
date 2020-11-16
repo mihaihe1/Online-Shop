@@ -24,23 +24,37 @@ namespace OnlineShop.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult New(Category category)
+        public ActionResult New(Category cat)
         {
-            db.Categories.Add(category);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Categories.Add(cat);
+                    db.SaveChanges();
+                    TempData["message"] = "Categoria a fost adaugata";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(cat);
+                }
+            }
+            catch (Exception e)
+            {
+                return View(cat);
+            }
         }
         public ActionResult Show(int id)
         {
             Category category = db.Categories.Find(id);
-            ViewBag.Category = category;
-            return View();
+            return View(category);
         }
+
         public ActionResult Edit(int id)
         {
             Category category = db.Categories.Find(id);
-            ViewBag.Category = category;
-            return View();
+            return View(category);
         }
         [HttpPut]
         public ActionResult Edit(int id, Category requestCategory)
@@ -51,16 +65,19 @@ namespace OnlineShop.Controllers
                 if (TryUpdateModel(category))
                 {
                     category.CategoryName = requestCategory.CategoryName;
-                    category.CategoryDescription = requestCategory.CategoryDescription;
                     db.SaveChanges();
+                    TempData["message"] = "Categoria a fost modificata";
+                    return RedirectToAction("Index");
                 }
-                return RedirectToAction("Index");
+
+                return View(requestCategory);
             }
-            catch(AmbiguousMatchException)
+            catch (Exception e)
             {
-                return View();
+                return View(requestCategory);
             }
         }
+
         [HttpDelete]
         public ActionResult Delete(int id)
         {

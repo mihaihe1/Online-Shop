@@ -1,17 +1,17 @@
-﻿
+﻿@model OnlineShop.Models.Category
+
 @{
     ViewBag.Title = "Show";
 }
 
 <h1>Afisare Categorie</h1>
 
-<h2>@ViewBag.Category.CategoryName</h2>
-<p>@ViewBag.Category.CategoryDescription</p>
+@Html.Partial("CategoryInfo", Model)
 
-<a href="/Categories/Edit/@ViewBag.Category.CategoryId">Modifica categoria</a>
+<a href="/Categories/Edit/@Model.CategoryId">Modifica categoria</a>
 <br />
 <br />
-<form method="post" action="/Categories/Delete/@ViewBag.Category.CategoryId">
+<form method="post" action="/Categories/Delete/@Model.CategoryId">
     @Html.HttpMethodOverride(HttpVerbs.Delete)
     <button type="submit">Sterge categorie</button>
 </form>

@@ -36,10 +36,7 @@ namespace OnlineShop.Controllers
         public ActionResult Show(int id)
         {
             Product product = db.Products.Find(id);
-            ViewBag.Product = product;
-            ViewBag.Category = product.Category;
-            ViewBag.Reviews = product.Reviews;
-            return View();
+            return View(product);
         }
         public ActionResult Edit(int id)
         {

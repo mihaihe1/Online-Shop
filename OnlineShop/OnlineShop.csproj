@@ -191,9 +191,10 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\New.cshtml" />
     <Content Include="Views\Products\Show.cshtml" />
-    <Content Include="Views\Reviews\Index.cshtml" />
-    <Content Include="Views\Reviews\Show.cshtml" />
-    <Content Include="Views\Reviews\New.cshtml" />
+    <Content Include="Views\Shared\CategoryInfo.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Reviews\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
