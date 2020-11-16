@@ -20,18 +20,33 @@ namespace OnlineShop.Controllers
         }
         public ActionResult New()
         {
-            var categories = from cat in db.Categories
-                             orderby cat.CategoryName
-                             select cat;
-            ViewBag.Categories = categories;
-            return View();
+            Product prod = new Product();
+            prod.Categ = GetAllCategories();
+            return View(prod);
         }
         [HttpPost]
-        public ActionResult New(Product product)
+        public ActionResult New(Product prod)
         {
-            db.Products.Add(product);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            prod.Categ = GetAllCategories();
+            
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Products.Add(prod);
+                    db.SaveChanges();
+                    TempData["message"] = "Produsul a fost adaugat";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(prod);
+                }
+            }
+            catch (Exception e)
+            {
+                return View(prod);
+            }
         }
         public ActionResult Show(int id)
         {
@@ -40,45 +55,72 @@ namespace OnlineShop.Controllers
         }
         public ActionResult Edit(int id)
         {
-            Product product = db.Products.Find(id);
-            ViewBag.Product = product;
-            ViewBag.Category = product.Category;
-            var categories = from cat in db.Categories
-                             select cat;
-            ViewBag.Categories = categories;
-            return View();
+            Product prod = db.Products.Find(id);
+            prod.Categ = GetAllCategories();
+            return View(prod);
         }
+
         [HttpPut]
         public ActionResult Edit(int id, Product requestProduct)
         {
+            requestProduct.Categ = GetAllCategories();
+
             try
             {
-                Product product = db.Products.Find(id);
-                if(TryUpdateModel(product))
+                if (ModelState.IsValid)
                 {
-                    product.Title = requestProduct.Title;
-                    product.Description = requestProduct.Description;
-                    product.Price = requestProduct.Price;
-                    product.CategoryId = requestProduct.CategoryId;
-                    db.SaveChanges();
+                    Product product = db.Products.Find(id);
+
+                    if (TryUpdateModel(product))
+                    {
+                        product.Title = requestProduct.Title;
+                        product.Description = requestProduct.Description;
+                        product.Price = requestProduct.Price;
+                        product.Rating = requestProduct.Rating;
+                        product.CategoryId = requestProduct.CategoryId;
+                        db.SaveChanges();
+                        TempData["message"] = "Produsul a fost modificat";
+                    }
+                    return RedirectToAction("Index");
                 }
-                return RedirectToAction("Index");
+                else
+                {
+                    return View(requestProduct);
+                }
+
             }
-            catch(AmbiguousMatchException)
+            catch (Exception e)
             {
-                return View();
+                return View(requestProduct);
             }
+        }
+        [NonAction]
+        public IEnumerable<SelectListItem> GetAllCategories()
+        {
+            var selectList = new List<SelectListItem>();
+
+            var categories = from cat in db.Categories
+                             select cat;
+
+            foreach (var category in categories)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = category.CategoryId.ToString(),
+                    Text = category.CategoryName.ToString()
+                });
+            }
+           
+            return selectList;
         }
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            Product product = db.Products.Find(id);
-            db.Products.Remove(product);
+            Product prod = db.Products.Find(id);
+            db.Products.Remove(prod);
             db.SaveChanges();
+            TempData["message"] = "Produsul a fost sters";
             return RedirectToAction("Index");
         }
-
-
-
     }
 }

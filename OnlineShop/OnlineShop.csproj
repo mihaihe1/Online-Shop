@@ -195,6 +195,7 @@
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Reviews\Edit.cshtml" />
+    <Content Include="Views\Shared\ProductInfo.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

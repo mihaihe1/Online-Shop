@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace OnlineShop.Models
 {
@@ -22,6 +23,8 @@ namespace OnlineShop.Models
 
         public virtual Category Category { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
+
+        public IEnumerable<SelectListItem> Categ { get; set; }
     }
 
 }

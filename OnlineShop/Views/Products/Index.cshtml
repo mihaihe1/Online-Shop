@@ -1,19 +1,17 @@
-﻿
+﻿@model OnlineShop.Models.Product
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h1>Afisarea produse</h1>
 
-@foreach (var product in ViewBag.Products)
+@foreach (OnlineShop.Models.Product product in ViewBag.Products)
 {
-    <h1>Nume: @product.Title</h1>
-    <p>Descriere: @product.Description</p>
-    <p>Pret: @product.Price</p>
-    <p>Rating: @product.Rating</p>
-    <p>Categorie: @product.Category.CategoryName</p>
-    <a href="/Products/Show/@product.Id">Afisare produs</a>
+    @Html.Partial("ProductInfo", product);
 }
+
+
 <br /><br /> <br />
 <a href="/Products/New/">Adauga produs</a>
 <br /><br />
